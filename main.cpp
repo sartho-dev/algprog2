@@ -10,6 +10,7 @@ typedef struct cel celula;
 
 void insira(int y, celula *lst);
 void imprime(celula *lst);
+void remove_tudo(celula *lst);
 
 int main(){
 
@@ -23,6 +24,10 @@ int main(){
     insira(20, lst);
     insira(30, lst);
     insira(7, lst);
+
+    imprime(lst);
+
+    remove_tudo(lst);
 
     imprime(lst);
 
@@ -52,7 +57,8 @@ void imprime(celula *lst){
     }
 }
 
-void remove_tude(celula *lst){
+
+void remove_tudo(celula *lst){
 
     celula *p = lst->seg;
     celula *prox;
@@ -62,4 +68,23 @@ void remove_tude(celula *lst){
         free(p);
         p = prox;
     }
+
+    lst->seg = NULL;
+}
+
+
+
+void remove_tudoR(celula *lst){
+
+
+    if(lst->seg == NULL){
+        printf("acabou");
+        return;
+    }
+
+    celula *p = lst->seg;
+    remove_tudoR(p);
+    free(p);
+
+    lst->seg = NULL;
 }
